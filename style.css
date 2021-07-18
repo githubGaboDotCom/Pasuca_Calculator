@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    font-size: 50px;
+    color: yellow;
+    text-align: center;
+}
+
+#searchBar {
+    background-image: url('search_icon.jpg');
+    background-repeat: no-repeat;
+    background-position: left;
+    margin-left: 325px;
+    padding: 12px 450px 12px 40px;
+    font-size: 16px;
+    border: 3px solid yellow;
+}
+
+.DropDownMenu_Style {
+    
+}
+
+.DropDown_Menu a {
+    display: block;
+}
+
+.show {display: block;}
