@@ -14,11 +14,20 @@ inputBox.onkeyup = (e)=>{
         });
         console.log(emptyArray);
         search_Menu.classList.add("active");
+        showOptions(emptyArray);
+        let allLiOptions = optionBox.querySelectorAll("li");
+        for (let i = 0; i < allLiOptions.length; i++) {
+            allLiOptions[i].setAttribute("onclick", "selectOption(this)");
+        }
     }else{
         search_Menu.classList.remove("active");
 
     }
-    showOptions(emptyArray);
+}
+
+function selectOption (liOption) {
+    let productSelected = liOption.textContent;
+    console.log(productSelected);
 }
 
 function showOptions (list) {

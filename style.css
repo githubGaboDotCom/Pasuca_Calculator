@@ -124,12 +124,6 @@ h1 {
     background-color: #efefef;
 }
 
-/*
-.products_selected td {
-    
-}
-*/
-
 .products_selected tr td:hover {
     background-color: rgb(247, 247, 129);
 }
