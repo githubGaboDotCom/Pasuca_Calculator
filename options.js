@@ -2,7 +2,7 @@ let options = [
     "CARBON PARA DIENTES - Precio: $1.25 A PARTIR DE 12 UNIDADES $1.00 C/U", 
     "BOLSA DE CERA - Precio: $1.00",
     "CEPILLO LIMPIADOR PARA ROSTRO - Precio: $2.50", 
-    "CEPILLO PARA SANAITARIO - Precio: $1.45", 
+    "CEPILLO PARA SANITARIO - Precio: $1.45", 
     "DISPENSADORES DE AGUA PARA NINOS - Precio: $12.00", 
     "TRAPEADOR MANOS LIBRES - Precio: $4.00", 
     "SACA CORCHO - Precio: $8.00", 

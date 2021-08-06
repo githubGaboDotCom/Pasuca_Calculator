@@ -30,9 +30,14 @@ const table_query = document.getElementById("table");
 const tr_query = table_query.getElementsByTagName("tr")[1];
 const td_query = tr_query.getElementsByTagName("td")[0];
 
+
+
 function selectOption (liOption) {
     let productSelected = liOption.textContent;
     td_query.innerHTML = productSelected;
+    inputBox.value = "";
+    search_Menu.classList.remove("active");
+
     console.log(td_query.innerHTML);
 }
 
