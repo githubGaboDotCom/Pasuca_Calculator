@@ -32,8 +32,8 @@
 
 
         </div>
-
         <div class="products_selected">
+
             <div class="table_height">
                 <table id="table">
                     <caption>Lista de Productos Seleccionados</caption>
@@ -41,17 +41,19 @@
                         <th>Nombre del Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
-                        <th>Remover Producto</th>
+                        <th>Remover</th>
                         <th>Total</th>
                     </tr>
                     <tr>
                         <td>Test 1</td>  
-                        <td>$9.00</td>
+                        <td>$0.00</td>
                         <td>
-                            <input id="products_quantity" type="number" placeholder="0" title="Agrega una cantidad">
+                            <input id="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onchange="multiplyPriceAndQuantity()">
                         </td>
-                        <td>remo</td>
-                        <td>$45.00</td>                 
+                        <td>
+                            <i class="fa fa-trash-o" id="trashBin"></i>
+                        </td>
+                        <td>$0.00</td>                 
                     </tr>
                 </table>
             </div>

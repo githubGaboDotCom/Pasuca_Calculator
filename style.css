@@ -135,7 +135,17 @@ h1 {
 
 .products_selected #products_quantity {
     width: 70px;
-    font-size: 13px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.products_selected #trashBin {
+    color: red;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:  50%;
+    cursor: pointer;
 }
 
 .products_selected tr td:hover {
