@@ -30,8 +30,8 @@ const table_query = document.querySelector("table");
 const trList = document.getElementById("addOrRemove");
 const tr_query = table_query.getElementsByTagName("tr")[1];
 const td_query = tr_query.getElementsByTagName("td")[2];
-var price;
-
+var price, result;
+var productSelected, quantity;
 
 function extractNumber (productName) {
     var priceValue = productName.replace(/[^0-9]/g, '');
@@ -41,32 +41,28 @@ function extractNumber (productName) {
 }
 
 function multiplyPriceAndQuantity() {
-    var quantity = document.getElementById("products_quantity").value;
-    var result = quantity * price;
-    console.log(quantity);
-    console.log(price);
-    console.log(result);
-    return result;
+    quantity = document.getElementById("products_quantity").value;
+    result = quantity * price;
+    document.getElementById("total").innerHTML = result;
 }
 
+
 function selectOption (liOption) {
-    let productSelected = liOption.textContent;
+    productSelected = liOption.textContent;
     price = extractNumber(productSelected);
     let tdQuantity = '<input id="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onchange="multiplyPriceAndQuantity()">'
     let removeIcon = '<i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i>';
-    let total = multiplyPriceAndQuantity();
     let tdOptions = '<td>' + productSelected + '</td>' + '<td>' + '$' + price + '</td>'
-    + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td>' + '$' + total + '</td>';
+    + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td id="total">' + '$0.00' + '</td>';
     trList.innerHTML = tdOptions;
     inputBox.value = "";
-    /*td_query_value.value = "";*/
     DropDown_Menu.classList.remove("active");
 
     console.log();
 }
 
 function addOrRemoveProduct () {
-    trList.remove();
+    trList.innerHTML = "";
 }
 
 function showOptions (list) {
