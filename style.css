@@ -108,11 +108,12 @@ h1 {
 
 .products_selected .table {
     width: 100%;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .products_selected .table_height {
     height: 600px;
+    overflow-y: auto;
 }
 
 .products_selected table, th {

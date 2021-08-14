@@ -53,7 +53,7 @@ function selectOption (liOption) {
     var trAdded = document.createElement('tr');
 
     let tdQuantity = '<input id="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onchange="multiplyPriceAndQuantity()">'
-    let removeIcon = '<i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i>';
+    let removeIcon = '<span class="removeIcon"><i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i></span>';
     let tdOptions = '<td>' + productSelected + '</td>' + '<td>' + '$' + price + '</td>'
     + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td id="total">' + '$0.00' + '</td>';
 
@@ -68,11 +68,16 @@ function selectOption (liOption) {
 
 
 function addOrRemoveProduct () {
-    document.getElementById('trashBin').addEventListener('click', function(event){
-        var productR = event.target;
-        productR.parentElement.parentElement.remove();
-        console.log('hola');
-    });
+    var icon = document.getElementsByClassName('removeIcon');
+
+    for(var i = 0; i < icon.length; i++){
+        var iconClicked = icon[i];
+        iconClicked.addEventListener('click', function(event){
+            var productR = event.target;
+            productR.parentElement.parentElement.parentElement.remove();
+            console.log('hola');
+        });
+    }
 }
 
 
