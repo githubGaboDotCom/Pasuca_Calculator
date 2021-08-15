@@ -28,10 +28,8 @@ inputBox.onkeyup = (e)=>{
 
 const table_query = document.querySelector("table");
 const trList = document.getElementsByClassName("table")[0];
-//const tr_query = table_query.getElementsByTagName("tr")[1];
-//const td_query = tr_query.getElementsByTagName("td")[2];
 var price, result;
-var productSelected, quantity, numberT = 0;
+var productSelected, numberT = 0;
 
 function extractNumber (productName) {
     var priceValue = productName.replace(/[^0-9]/g, '');
@@ -40,30 +38,21 @@ function extractNumber (productName) {
 
 }
 
-function multiplyPriceAndQuantity() {
-    quantity = document.getElementById("products_quantity").value;
-    result = quantity * price;
-    document.getElementById("total").innerHTML = result;
-}
-
-
 function selectOption (liOption) {
     productSelected = liOption.textContent;
     price = extractNumber(productSelected);
     var trAdded = document.createElement('tr');
 
-    let tdQuantity = '<input id="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onchange="multiplyPriceAndQuantity()">'
+    let tdQuantity = '<input class="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity(event)" onclick="multiplyPriceAndQuantity(event)">'
     let removeIcon = '<span class="removeIcon"><i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i></span>';
-    let tdOptions = '<td>' + productSelected + '</td>' + '<td>' + '$' + price + '</td>'
-    + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td id="total">' + '$0.00' + '</td>';
+    let tdOptions = '<td>' + productSelected + '</td>' + '<td class="priceValue">' + '$' + price + '</td>'
+    + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td class="totalRow">' + '$0.00' + '</td>';
 
     trAdded.innerHTML = tdOptions;
     trList.append(trAdded);
     numberT += 1;
     inputBox.value = "";
     DropDown_Menu.classList.remove("active");
-
-    console.log(numberT);
 }
 
 
@@ -75,8 +64,43 @@ function addOrRemoveProduct () {
         iconClicked.addEventListener('click', function(event){
             var productR = event.target;
             productR.parentElement.parentElement.parentElement.remove();
-            console.log('hola');
         });
+    }
+}
+
+function multiplyPriceAndQuantity(event) {
+
+    var input = event.target;
+    var quantity = document.getElementsByClassName("products_quantity");
+    var priceV = document.getElementsByClassName("priceValue");
+    //var finalPrice = parseFloat(priceV.innerHTML.replace('$', ''));
+    for(var j = 0; j < quantity.length; j++){
+        var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
+        //console.log(j);
+        var quantityInput = quantity[j];
+        console.log(quantityInput.value);
+        console.log(finalPrice);
+        var result = quantityInput.value * finalPrice;
+        //console.log(result);
+        document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
+
+        //console.log(input.value);
+        
+        /*input.addEventListener('input', function (){
+            console.log(quantityInput.value);
+            if (input.value < 1) {
+                input.value = "";
+            }
+            result = input.value * price;
+        });
+        if(result == 0)
+        {
+            result = input.value * price;
+            document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
+
+        }else {
+            document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
+        }*/
     }
 }
 
