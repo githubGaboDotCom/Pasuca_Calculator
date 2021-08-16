@@ -73,37 +73,15 @@ function multiplyPriceAndQuantity(event) {
     var input = event.target;
     var quantity = document.getElementsByClassName("products_quantity");
     var priceV = document.getElementsByClassName("priceValue");
-    //var finalPrice = parseFloat(priceV.innerHTML.replace('$', ''));
     for(var j = 0; j < quantity.length; j++){
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
-        //console.log(j);
         var quantityInput = quantity[j];
         console.log(quantityInput.value);
         console.log(finalPrice);
         var result = quantityInput.value * finalPrice;
-        //console.log(result);
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
-
-        //console.log(input.value);
-        
-        /*input.addEventListener('input', function (){
-            console.log(quantityInput.value);
-            if (input.value < 1) {
-                input.value = "";
-            }
-            result = input.value * price;
-        });
-        if(result == 0)
-        {
-            result = input.value * price;
-            document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
-
-        }else {
-            document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
-        }*/
     }
 }
-
 
 function showOptions (list) {
     let listData;
