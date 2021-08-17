@@ -11,7 +11,7 @@ inputBox.onkeyup = (e)=>{
             return data.toLocaleLowerCase().indexOf(userData.toLocaleLowerCase()) > -1;
         });
         emptyArray = emptyArray.map((data)=>{
-            return data = '<li>' + data + '<li>';
+            return data = '<li>' + data + '</li>';
         });
         console.log(emptyArray);
         DropDown_Menu.classList.add("active");
@@ -88,6 +88,9 @@ function multiplyPriceAndQuantity() {
     for(var j = 0; j < quantity.length; j++){
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
+        if (quantityInput.value < 0){
+            quantityInput.value = 0;
+        }
         var result = quantityInput.value * finalPrice;
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
         var finalValue = parseFloat(document.getElementsByClassName('totalRow')[j].innerHTML.replace('$', ''));
