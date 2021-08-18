@@ -28,19 +28,35 @@ inputBox.onkeyup = (e)=>{
 
 const table_query = document.querySelector("table");
 const trList = document.getElementsByClassName("table")[0];
-var price, result;
+var price, result, priceWithUnits, units, newPrice;
 var productSelected, numberT = 0;
 
 function extractNumber (productName) {
-    var priceValue = productName.replace(/[^0-9]/g, '');
+    if (productName.includes("PARTIR")){
+        var deleteStrUpto = productName.replace(/^(.*?)PARTIR/, '');
+        var deleteStrUpto1 = productName.replace(/^(.*?)UNIDADES/, '');
+        priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
+        var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
+        units = deleteStrAfter.replace(/[^0-9]/g, ''); 
+        newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
+    }else{
+        priceWithUnits = 0;
+        //units = 0;
+        
+    }
+
+    var matchUpto = productName.replace(/PARTIR(.*)$/, '');
+    var priceValue = matchUpto.replace(/[^0-9]/g, '');
     var priceExtracted = parseFloat(priceValue).toFixed(2) * 0.01;
+
     return priceExtracted;
 
 }
 
 function selectOption (liOption) {
     productSelected = liOption.textContent;
-    price = extractNumber(productSelected);
+    var priceToFixed2 = extractNumber(productSelected);
+    price = priceToFixed2.toFixed(2);
     var trAdded = document.createElement('tr');
 
     let tdQuantity = '<input class="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onclick="multiplyPriceAndQuantity(event)">'
@@ -72,8 +88,7 @@ function addOrRemoveProduct () {
                 var currentNumOfProducts = document.getElementsByClassName('totalRow');
                 var removedFinalValue = parseFloat(currentNumOfProducts[r].innerHTML.replace('$', ''));
                 removedFinalTotal += removedFinalValue;
-                console.log(removedFinalTotal);
-                document.getElementById('total_value').innerHTML = '$' + removedFinalTotal; 
+                document.getElementById('total_value').innerHTML = '$' + removedFinalTotal.toFixed(2); 
         
             }
         });
@@ -91,6 +106,17 @@ function multiplyPriceAndQuantity() {
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
+/*
+        if (quantityInput.value >= units){
+            finalPrice = newPrice;
+            document.getElementsByClassName("priceValue")[j].innerHTML = '$' + newPrice.toFixed(2);
+            //console.log("It works");
+        }else{
+            document.getElementsByClassName("priceValue")[j].innerHTML = '$' + finalPrice.toFixed(2);
+            //console.log("Doesn't work");
+        }
+*/
+
         var result = quantityInput.value * finalPrice;
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
         var finalValue = parseFloat(document.getElementsByClassName('totalRow')[j].innerHTML.replace('$', ''));
