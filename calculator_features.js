@@ -92,10 +92,10 @@ function multiplyPriceAndQuantity() {
             quantityInput.value = 0;
         }
         var result = quantityInput.value * finalPrice;
-        document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result;
+        document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
         var finalValue = parseFloat(document.getElementsByClassName('totalRow')[j].innerHTML.replace('$', ''));
         finalTotal += finalValue;
-        document.getElementById('total_value').innerHTML = '$' + finalTotal;
+        document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
     }
 }
 
