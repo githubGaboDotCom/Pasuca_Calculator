@@ -32,22 +32,13 @@ var price, result, priceWithUnits, units, newPrice;
 var productSelected, numberT = 0;
 
 function extractNumber (productName) {
-    if (productName.includes("PARTIR")){
-        var deleteStrUpto = productName.replace(/^(.*?)PARTIR/, '');
-        var deleteStrUpto1 = productName.replace(/^(.*?)UNIDADES/, '');
-        priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
-        var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
-        units = deleteStrAfter.replace(/[^0-9]/g, ''); 
-        newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
-    }else{
-        priceWithUnits = 0;
-        //units = 0;
-        
-    }
 
     var matchUpto = productName.replace(/PARTIR(.*)$/, '');
+    //console.log(matchUpto);
     var priceValue = matchUpto.replace(/[^0-9]/g, '');
+    //console.log(priceValue);
     var priceExtracted = parseFloat(priceValue).toFixed(2) * 0.01;
+    //console.log(priceExtracted);
 
     return priceExtracted;
 
@@ -106,16 +97,31 @@ function multiplyPriceAndQuantity() {
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
+        if (productSelected.includes("PARTIR")){
+            console.log('Works!');
+            console.log(productSelected);
+            /*var deleteStrUpto = productSelected.replace(/^(.*?)PARTIR/, '');
+            var deleteStrUpto1 = productSelected.replace(/^(.*?)UNIDADES/, '');
+            priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
+            var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
+            units = deleteStrAfter.replace(/[^0-9]/g, ''); 
+            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;*/
+        }else if (!(productSelected.includes("PARTIR"))){
+            console.log('Doesnt work');
+            units = undefined;
+            
+        }
+        console.log(units);
+        //console.log(newPrice);
 /*
         if (quantityInput.value >= units){
             finalPrice = newPrice;
             document.getElementsByClassName("priceValue")[j].innerHTML = '$' + newPrice.toFixed(2);
             //console.log("It works");
         }else{
-            document.getElementsByClassName("priceValue")[j].innerHTML = '$' + finalPrice.toFixed(2);
+            //document.getElementsByClassName("priceValue")[j].innerHTML = '$' + finalPrice.toFixed(2);
             //console.log("Doesn't work");
-        }
-*/
+        }*/
 
         var result = quantityInput.value * finalPrice;
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
