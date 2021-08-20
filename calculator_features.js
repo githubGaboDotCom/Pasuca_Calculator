@@ -95,46 +95,30 @@ function multiplyPriceAndQuantity() {
     for(var j = 0; j < quantity.length; j++){
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
+        var num = j;
         var productString = productNameSelected[j].innerHTML;
-        var alteredPrice = document.getElementsByClassName("priceValue")[j].innerHTML;
+        var deleteStrUpto = productString.replace(/^(.*?)PARTIR/, '');
+        var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
+        units = parseFloat(deleteStrAfter.replace(/[^0-9]/g, '')); 
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
 
         quantity[j].addEventListener('click', function(){
-            //console.log("It working");
-            var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
-            priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
-            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
-            console.log(alteredPrice.innerHTML); //= '$' + newPrice.toFixed(2);
+
+            if (quantityInput.value >= units){
+                var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
+                priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
+                newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
+                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + newPrice.toFixed(2);
+                console.log(newPrice);
+            }else if (quantityInput.value < units){
+                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + finalPrice.toFixed(2);
+                console.log(finalPrice);
+
+            }
 
         });
-        /*
-        if (productString.includes("PARTIR")){
-            console.log('Works!');
-            console.log(productSelected);
-            /*var deleteStrUpto = productSelected.replace(/^(.*?)PARTIR/, '');
-            var deleteStrUpto1 = productSelected.replace(/^(.*?)UNIDADES/, '');
-            priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
-            var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
-            units = deleteStrAfter.replace(/[^0-9]/g, ''); 
-            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
-        }*//*else if (!(productString.includes("PARTIR"))){
-            console.log('Doesnt work');
-            //units = undefined;
-            
-        }*/
-        //console.log(units);
-        //console.log(newPrice);
-/*
-        if (quantityInput.value >= units){
-            finalPrice = newPrice;
-            document.getElementsByClassName("priceValue")[j].innerHTML = '$' + newPrice.toFixed(2);
-            //console.log("It works");
-        }else{
-            //document.getElementsByClassName("priceValue")[j].innerHTML = '$' + finalPrice.toFixed(2);
-            //console.log("Doesn't work");
-        }*/
 
         var result = quantityInput.value * finalPrice;
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
