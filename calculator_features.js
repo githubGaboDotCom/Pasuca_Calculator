@@ -52,7 +52,7 @@ function selectOption (liOption) {
 
     let tdQuantity = '<input class="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onclick="multiplyPriceAndQuantity(event)">'
     let removeIcon = '<span class="removeIcon"><i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i></span>';
-    let tdOptions = '<td>' + productSelected + '</td>' + '<td class="priceValue">' + '$' + price + '</td>'
+    let tdOptions = '<td class="productSelectedValue">' + productSelected + '</td>' + '<td class="priceValue">' + '$' + price + '</td>'
     + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td class="totalRow">' + '$0.00' + '</td>';
 
     trAdded.innerHTML = tdOptions;
@@ -91,13 +91,26 @@ function multiplyPriceAndQuantity() {
     var finalTotal = 0;
     var quantity = document.getElementsByClassName("products_quantity");
     var priceV = document.getElementsByClassName("priceValue");
+    var productNameSelected = document.getElementsByClassName("productSelectedValue");
     for(var j = 0; j < quantity.length; j++){
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
+        var productString = productNameSelected[j].innerHTML;
+        var alteredPrice = document.getElementsByClassName("priceValue")[j].innerHTML;
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
-        if (productSelected.includes("PARTIR")){
+
+        quantity[j].addEventListener('click', function(){
+            //console.log("It working");
+            var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
+            priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
+            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
+            console.log(alteredPrice.innerHTML); //= '$' + newPrice.toFixed(2);
+
+        });
+        /*
+        if (productString.includes("PARTIR")){
             console.log('Works!');
             console.log(productSelected);
             /*var deleteStrUpto = productSelected.replace(/^(.*?)PARTIR/, '');
@@ -105,13 +118,13 @@ function multiplyPriceAndQuantity() {
             priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
             var deleteStrAfter = deleteStrUpto.replace(/UNIDADES(.*)$/, '');
             units = deleteStrAfter.replace(/[^0-9]/g, ''); 
-            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;*/
-        }else if (!(productSelected.includes("PARTIR"))){
+            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
+        }*//*else if (!(productString.includes("PARTIR"))){
             console.log('Doesnt work');
-            units = undefined;
+            //units = undefined;
             
-        }
-        console.log(units);
+        }*/
+        //console.log(units);
         //console.log(newPrice);
 /*
         if (quantityInput.value >= units){
