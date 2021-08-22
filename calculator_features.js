@@ -28,7 +28,7 @@ inputBox.onkeyup = (e)=>{
 
 const table_query = document.querySelector("table");
 const trList = document.getElementsByClassName("table")[0];
-var price, result, priceWithUnits, units, newPrice;
+var price, result = 0, priceWithUnits, units, newPrice, priceExtracted;
 var productSelected, numberT = 0;
 
 function extractNumber (productName) {
@@ -37,7 +37,7 @@ function extractNumber (productName) {
     //console.log(matchUpto);
     var priceValue = matchUpto.replace(/[^0-9]/g, '');
     //console.log(priceValue);
-    var priceExtracted = parseFloat(priceValue).toFixed(2) * 0.01;
+    priceExtracted = parseFloat(priceValue).toFixed(2) * 0.01;
     //console.log(priceExtracted);
 
     return priceExtracted;
@@ -50,7 +50,7 @@ function selectOption (liOption) {
     price = priceToFixed2.toFixed(2);
     var trAdded = document.createElement('tr');
 
-    let tdQuantity = '<input class="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onclick="multiplyPriceAndQuantity(event)">'
+    let tdQuantity = '<span class="inputDisplayed"><input class="products_quantity" type="number" placeholder="0" title="Agrega una cantidad" onkeyup="multiplyPriceAndQuantity()" onclick="multiplyPriceAndQuantity(event)"></span>'
     let removeIcon = '<span class="removeIcon"><i class="fa fa-trash-o" id="trashBin" onclick="addOrRemoveProduct()"></i></span>';
     let tdOptions = '<td class="productSelectedValue">' + productSelected + '</td>' + '<td class="priceValue">' + '$' + price + '</td>'
     + '<td>' + tdQuantity + '</td>' + '<td>' + removeIcon + '</td>' + '<td class="totalRow">' + '$0.00' + '</td>';
@@ -86,13 +86,16 @@ function addOrRemoveProduct () {
     }
 }
 
+var finalPrice2 = 0, inputNumber = 0, finalValue = 0, finalTotal = 0;
+
 function multiplyPriceAndQuantity() {
 
-    var finalTotal = 0;
     var quantity = document.getElementsByClassName("products_quantity");
-    var priceV = document.getElementsByClassName("priceValue");
+    //var priceV = document.getElementsByClassName("priceValue");
     var productNameSelected = document.getElementsByClassName("productSelectedValue");
+    var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
     for(var j = 0; j < quantity.length; j++){
+        var priceV = document.getElementsByClassName("priceValue");
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
         var num = j;
@@ -104,27 +107,48 @@ function multiplyPriceAndQuantity() {
             quantityInput.value = 0;
         }
 
-        quantity[j].addEventListener('click', function(){
+        numInputDisplayed[j].addEventListener('click', function(event){
 
-            if (quantityInput.value >= units){
+            inputNumber = event.target;
+
+
+            if (inputNumber.value >= units){
+
                 var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
                 priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
                 newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
                 document.getElementsByClassName("priceValue")[num].innerHTML = '$' + newPrice.toFixed(2);
-                console.log(newPrice);
-            }else if (quantityInput.value < units){
-                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + finalPrice.toFixed(2);
-                console.log(finalPrice);
+                finalPrice2 = newPrice;
+                result = inputNumber.value * finalPrice2;
+                document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
+                /*finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
+                finalTotal += finalValue;
+                document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
+                finalTotal = 0;*/
+            }
+            
+            if (inputNumber.value < units){
+                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + priceExtracted.toFixed(2);
+                finalPrice2 = priceExtracted;
+                result = inputNumber.value * finalPrice2;
+                document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
+                /*finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
+                finalTotal += finalValue;
+                document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
+                finalTotal = 0;*/
 
             }
 
         });
 
-        var result = quantityInput.value * finalPrice;
+
+/*
+        console.log(inputNumber.value);
+        var result = inputNumber.value * finalPrice2;
         document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
         var finalValue = parseFloat(document.getElementsByClassName('totalRow')[j].innerHTML.replace('$', ''));
         finalTotal += finalValue;
-        document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
+        document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);*/
     }
 }
 
