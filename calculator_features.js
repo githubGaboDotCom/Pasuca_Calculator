@@ -93,9 +93,10 @@ function multiplyPriceAndQuantity() {
     var quantity = document.getElementsByClassName("products_quantity");
     //var priceV = document.getElementsByClassName("priceValue");
     var productNameSelected = document.getElementsByClassName("productSelectedValue");
-    var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
+    //var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
     for(var j = 0; j < quantity.length; j++){
         var priceV = document.getElementsByClassName("priceValue");
+        //var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
         var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
         var num = j;
@@ -106,40 +107,44 @@ function multiplyPriceAndQuantity() {
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
-
+/*
         numInputDisplayed[j].addEventListener('click', function(event){
 
             inputNumber = event.target;
+            console.log("clicked");*/
 
 
-            if (inputNumber.value >= units){
+        if (quantityInput.value >= units){
 
-                var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
-                priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
-                newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
-                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + newPrice.toFixed(2);
-                finalPrice2 = newPrice;
-                result = inputNumber.value * finalPrice2;
-                document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
-                /*finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
-                finalTotal += finalValue;
-                document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
-                finalTotal = 0;*/
-            }
-            
-            if (inputNumber.value < units){
-                document.getElementsByClassName("priceValue")[num].innerHTML = '$' + priceExtracted.toFixed(2);
-                finalPrice2 = priceExtracted;
-                result = inputNumber.value * finalPrice2;
-                document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
-                /*finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
-                finalTotal += finalValue;
-                document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
-                finalTotal = 0;*/
+            var deleteStrUpto1 = productString.replace(/^(.*?)UNIDADES/, '');
+            priceWithUnits = deleteStrUpto1.replace(/[^0-9]/g, '');
+            newPrice = parseFloat(priceWithUnits).toFixed(2) * 0.01;
+            document.getElementsByClassName("priceValue")[num].innerHTML = '$' + newPrice.toFixed(2);
+            finalPrice2 = newPrice;
+            result = quantityInput.value * finalPrice2;
+            document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
+            finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
+            finalTotal += finalValue;
+            document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
+        }
 
-            }
+        if (quantityInput.value < units){
+            var matchUpto2 = productString.replace(/PARTIR(.*)$/, '');
+            var priceValue2 = matchUpto2.replace(/[^0-9]/g, '');
+            priceExtracted2 = parseFloat(priceValue2).toFixed(2) * 0.01;
+            document.getElementsByClassName("priceValue")[num].innerHTML = '$' + priceExtracted2.toFixed(2);
+            finalPrice2 = priceExtracted2;
+            result = quantityInput.value * finalPrice2;
+            document.getElementsByClassName("totalRow")[num].innerHTML = '$' + result.toFixed(2);
+            finalValue = parseFloat(document.getElementsByClassName('totalRow')[num].innerHTML.replace('$', ''));
+            finalTotal += finalValue;
+            document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
 
-        });
+        }
+
+        finalTotal = 0;
+
+        /*});*/
 
 
 /*
