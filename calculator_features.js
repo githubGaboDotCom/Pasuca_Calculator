@@ -90,14 +90,12 @@ var finalPrice2 = 0, inputNumber = 0, finalValue = 0, finalTotal = 0;
 
 function multiplyPriceAndQuantity() {
 
+    finalTotal = 0;
     var quantity = document.getElementsByClassName("products_quantity");
-    //var priceV = document.getElementsByClassName("priceValue");
     var productNameSelected = document.getElementsByClassName("productSelectedValue");
-    //var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
+
     for(var j = 0; j < quantity.length; j++){
         var priceV = document.getElementsByClassName("priceValue");
-        //var numInputDisplayed = document.getElementsByClassName("inputDisplayed");
-        var finalPrice = parseFloat(priceV[j].innerHTML.replace('$', ''));
         var quantityInput = quantity[j];
         var num = j;
         var productString = productNameSelected[j].innerHTML;
@@ -107,11 +105,6 @@ function multiplyPriceAndQuantity() {
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
-/*
-        numInputDisplayed[j].addEventListener('click', function(event){
-
-            inputNumber = event.target;
-            console.log("clicked");*/
 
 
         if (quantityInput.value >= units){
@@ -141,19 +134,6 @@ function multiplyPriceAndQuantity() {
             document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);
 
         }
-
-        finalTotal = 0;
-
-        /*});*/
-
-
-/*
-        console.log(inputNumber.value);
-        var result = inputNumber.value * finalPrice2;
-        document.getElementsByClassName("totalRow")[j].innerHTML = '$' + result.toFixed(2);
-        var finalValue = parseFloat(document.getElementsByClassName('totalRow')[j].innerHTML.replace('$', ''));
-        finalTotal += finalValue;
-        document.getElementById('total_value').innerHTML = '$' + finalTotal.toFixed(2);*/
     }
 }
 
