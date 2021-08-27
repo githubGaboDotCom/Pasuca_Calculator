@@ -2,7 +2,6 @@ const DropDown_Menu = document.querySelector(".Style_Menu");
 const inputBox = DropDown_Menu.querySelector("input");
 const optionBox = DropDown_Menu.querySelector(".Style_For_productOptions");
 
-
 inputBox.onkeyup = (e)=>{
     let userData = e.target.value;
     let emptyArray = [];
@@ -34,11 +33,8 @@ var productSelected, numberT = 0;
 function extractNumber (productName) {
 
     var matchUpto = productName.replace(/PARTIR(.*)$/, '');
-    //console.log(matchUpto);
     var priceValue = matchUpto.replace(/[^0-9]/g, '');
-    //console.log(priceValue);
     priceExtracted = parseFloat(priceValue).toFixed(2) * 0.01;
-    //console.log(priceExtracted);
 
     return priceExtracted;
 
@@ -95,7 +91,6 @@ function multiplyPriceAndQuantity() {
     var productNameSelected = document.getElementsByClassName("productSelectedValue");
 
     for(var j = 0; j < quantity.length; j++){
-        var priceV = document.getElementsByClassName("priceValue");
         var quantityInput = quantity[j];
         var num = j;
         var productString = productNameSelected[j].innerHTML;
@@ -105,7 +100,6 @@ function multiplyPriceAndQuantity() {
         if (quantityInput.value < 0){
             quantityInput.value = 0;
         }
-
 
         if (quantityInput.value >= units){
 
