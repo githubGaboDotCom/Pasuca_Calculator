@@ -2,6 +2,10 @@ const DropDown_Menu = document.querySelector(".Style_Menu");
 const inputBox = DropDown_Menu.querySelector("input");
 const optionBox = DropDown_Menu.querySelector(".Style_For_productOptions");
 
+//The following function returns a list of the products that matches the input
+//entered by the user. It filters and searches from all the options available and
+//returns accurate data.  
+
 inputBox.onkeyup = (e)=>{
     let userData = e.target.value;
     let emptyArray = [];
@@ -30,6 +34,9 @@ const trList = document.getElementsByClassName("table")[0];
 var price, result = 0, priceWithUnits, units, newPrice, priceExtracted;
 var productSelected, numberT = 0;
 
+//This function returns the current price of the product. It will filter the user
+//input to find a certain quantity and return it as a number.
+
 function extractNumber (productName) {
 
     var matchUpto = productName.replace(/PARTIR(.*)$/, '');
@@ -39,6 +46,10 @@ function extractNumber (productName) {
     return priceExtracted;
 
 }
+
+//This function is in charge of creating new product rows in the table. As soon as
+//the user clicks on a product from the dropdown menu, it will create a selected
+//product. 
 
 function selectOption (liOption) {
     productSelected = liOption.textContent;
@@ -57,6 +68,10 @@ function selectOption (liOption) {
     inputBox.value = "";
     DropDown_Menu.classList.remove("active");
 }
+
+//This function will remove a selected product as soon as the user clicks on the
+//trash bin icon. I will also update the total value automatically as soon as a 
+//product is removed. 
 
 function addOrRemoveProduct () {
     var icon = document.getElementsByClassName('removeIcon');
@@ -83,6 +98,10 @@ function addOrRemoveProduct () {
 }
 
 var finalPrice2 = 0, inputNumber = 0, finalValue = 0, finalTotal = 0;
+
+//This function is very important because it does the math for the whole functionality
+//of the program. It will multiply a current price with the amount of items the user
+//may want. It will also add up each result to give a final value.
 
 function multiplyPriceAndQuantity() {
 
@@ -130,6 +149,9 @@ function multiplyPriceAndQuantity() {
         }
     }
 }
+
+//This function is in charge of displaying the options in the dropdown menu for the
+//user.
 
 function showOptions (list) {
     let listData;
