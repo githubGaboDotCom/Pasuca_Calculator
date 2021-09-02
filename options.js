@@ -382,5 +382,7 @@ let options = [
     "COSTO DEL ENVIO - Precio: $20.50",
     "PROMO MASAJEADOR CORPO - Precio: $4.50",
     "MILK FROTHER - Precio: $13.85",
+    "SET DE BROCHAS - Precio: $4.95",
+    "RELOJ DEPORTIVO PARA CABALLERO - Precio: $4.75",
 
 ];
