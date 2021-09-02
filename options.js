@@ -327,7 +327,7 @@ let options = [
     "TVBOX ULTIMA VERSION - Precio: $18.40",
     "ASADOR DE CARNE - Precio: $24.00",
     "PORTA CELULAR ADHESIVO - Precio: $1.75 ",
-    "HONGO PARLANTE ",
+    "HONGO PARLANTE - Precio: $2.95 ",
     "PROMO COMBO COCINA - Precio: $13.85 ",
     "PROMO CUCHILLOS ACEITERO TAPAS - Precio: $9.50",
     "PROMO CEPILLO Y ONDULADOR - Precio: $10.00",
