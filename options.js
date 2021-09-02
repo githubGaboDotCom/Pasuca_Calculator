@@ -315,7 +315,7 @@ let options = [
     "GUANTE PARA OBJETOS CALIENTES - Precio: $0.45 ",
     "MASAJEADOR CORPORAL - Precio: $5.25 ",
     "FORRO DE MUEBLE - Precio: $10.50 ",
-    "FORRO DE MUEBLE 2 PUESTOS - Precio: $9.50 ",
+    "FORRO DE MUEBLE DOS PUESTOS - Precio: $9.50 ",
     "OSO REFLECTOR BLANCO - Precio: $7.00",
     "JABON FACIAL - Precio: $2.25",
     "ESFOLIANTES CORPORALES - Precio: $2.30",
