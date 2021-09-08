@@ -189,7 +189,7 @@ let options = [
     "LONCHERA ELECTRICA - Precio: $4.75 ",
     "COMBO COLAGENO - Precio: $8.80 ",
     "SEIS LABIALES MAGICO - Precio: $3.40 ",
-    "PLATERA DE DOS POZOS - Precio: $22.50 ",
+    "PLATERA DE UN POZO - Precio: $22.50 ",
     "TABLA PICAR - Precio: $2.00",
     "ZAPATERA VARIOS COLORES - Precio: $13.25 ",
     "ORGANIZADOR DE CONDIMENTOS - Precio: $8.50 ",
@@ -444,4 +444,6 @@ let options = [
     "COMEDERO O BEBEDERO - Precio: $5.25",
     "FAJA PARA HOMBRE - Precio: $3.50",
     "PROMO WAFLERA CORAZON - Precio: $11.95",
+    "AFEITADORA PARA MASCOTAS - Precio: $11.00",
+    "ARGAN MASK PEEL - Precio: $1.65",
 ];
