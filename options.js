@@ -216,7 +216,7 @@ let options = [
     "REFRIGERADOR - Precio: $25.80 ",
     "KIT DEPILACION Y ROSTRO - Precio: $10.50 ",
     "COMBO ROSTRO LINDO - Precio: $3.50 ",
-    "COMBO MADI - Precio: $13.80 ",
+    "COMBO MADI - Precio: $13.00 ",
     "CIGARILLOS - Precio: $1.50 ",
     "KIT PUNTOS NEGROS - Precio: $6.85 ",
     "TENSIOMETRO - Precio: $9.50 ",
@@ -580,4 +580,9 @@ let options = [
     "PROMO CREPERA - Precio: $12.95",
     "PROMO ALFOMBRA - Precio: $13.95",
     "PROMO AUDIFONO - Precio: $4.95",
+    "PROMO DISPENSADOR DE PASTA - Precio: $4.45",
+    "PROMO INFLADOR DE LLANTAS - Precio: $6.95",
+    "PROMO ORGANIZADOR LIMPIA OLLA Y SARTEN - Precio: $12.45",
+    "MESA PORTATIL - Precio: $14.50",
+    "COMBO BRAZILIAN - Precio: $11.40",
 ];
