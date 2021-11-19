@@ -457,7 +457,7 @@ let options = [
     "NUEVO SET DE PLASTILINA - Precio: $4.00",
     "JUEGO DIDACTICO - Precio: $5.95",
     "PARCHE PARA OJOS - Precio: $0.90",
-    "COSEDORA GRANDE - Precio: $3.00",
+    "COSEDORA GRANDE - Precio: $2.50",
     "TENDEDERO DE ROPA TRES EN UNO - Precio: $5.95",
     "LIMPIA MALLAS - Precio: $1.80",
     "TINA PARA PIES - Precio: $7.50",
